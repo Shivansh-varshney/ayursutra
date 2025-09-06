@@ -42,30 +42,39 @@ export function Sidebar() {
   return (
     <div className={cn(
       "flex flex-col h-screen bg-sidebar border-r border-sidebar-border transition-all duration-300",
-      collapsed ? "w-16" : "w-64"
+      collapsed ? "w-16" : "w-65"
     )}>
       {/* Header */}
-      <div className="p-4 border-b border-sidebar-border">
-        <div className="flex items-center justify-between">
-          {!collapsed && (
-            <h1 className="text-xl font-bold bg-gradient-primary bg-clip-text text-transparent">
-              AyurSutra
-            </h1>
-          )}
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={() => setCollapsed(!collapsed)}
-            className="h-8 w-8 p-0"
-          >
-            {collapsed ? (
-              <ChevronRight className="h-4 w-4" />
-            ) : (
-              <ChevronLeft className="h-4 w-4" />
-            )}
-          </Button>
-        </div>
+<div className="p-4 border-b border-sidebar-border">
+  <div className="flex items-center justify-between">
+    {!collapsed && (
+      <div className="flex items-center gap-2">
+        <img 
+          src="/AyurSutra Logo - Mandala Concept.png" 
+          alt="AyurSutra Logo" 
+          className="h-8 w-8 object-contain bg-black"
+        />
+        <h1 className="text-xl font-bold bg-black dark:bg-white bg-clip-text text-transparent">
+  AyurSutra
+</h1>
+
       </div>
+    )}
+    <Button
+      variant="ghost"
+      size="sm"
+      onClick={() => setCollapsed(!collapsed)}
+      className="h-8 w-8 p-0"
+    >
+      {collapsed ? (
+        <ChevronRight className="h-4 w-4" />
+      ) : (
+        <ChevronLeft className="h-4 w-4" />
+      )}
+    </Button>
+  </div>
+</div>
+
 
       {/* User Profile */}
       <div className="p-4 border-b border-sidebar-border">
@@ -92,16 +101,17 @@ export function Sidebar() {
       <nav className="flex-1 p-4 space-y-2">
         {navItems.map((item) => (
           <NavLink
-            key={item.to}
-            to={item.to}
-            className={({ isActive }) =>
-              cn(
-                "flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-200 group",
-                isActive
-                  ? "bg-primary text-primary-foreground shadow-lg"
-                  : "text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
-              )
-            }
+  key={item.to}
+  to={item.to}
+  className={({ isActive }) =>
+    cn(
+      "flex items-center gap-3 py-3 rounded-lg transition-all duration-200 group",
+      collapsed ? "w-10 justify-center" : "w-full px-3 justify-start",
+      isActive
+        ? "bg-primary text-primary-foreground shadow-lg"
+        : "text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
+    )
+  }
           >
             <item.icon className="h-5 w-5 flex-shrink-0" />
             {!collapsed && (
@@ -118,6 +128,10 @@ export function Sidebar() {
         {!collapsed && (
           <div className="space-y-3">
             <RoleToggle />
+            {/* <div className="inline-block px-3 py-1 text-xs font-medium bg-black text-white border border-white rounded-full shadow-sm">
+  Beta
+</div>*/}
+
             <div className="flex items-center justify-between">
               <span className="text-sm text-muted-foreground">Theme</span>
               <ThemeToggle />

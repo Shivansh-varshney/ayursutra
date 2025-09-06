@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button"
-import { ThemeToggle } from "@/components/ui/theme-toggle"
+/*import { ThemeToggle } from "@/components/ui/theme-toggle"*/
 import { useNavigate } from "react-router-dom"
 import { ArrowRight, Calendar, TrendingUp, Bell, Shield, Users, Heart } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
@@ -11,33 +11,41 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       {/* Navigation */}
-      <nav className="border-b bg-card/50 backdrop-blur supports-[backdrop-filter]:bg-card/50">
-        <div className="container mx-auto px-4 h-16 flex items-center justify-between">
-          <h1 className="text-xl font-bold bg-gradient-primary bg-clip-text text-transparent">
-            AyurSutra
-          </h1>
-          <div className="flex items-center gap-4">
-            <ThemeToggle />
-            <Button variant="ghost" onClick={() => navigate("/login")}>
-              Login
-            </Button>
-            <Button variant="hero" onClick={() => navigate("/register")}>
-              Get Started
-            </Button>
-          </div>
-        </div>
-      </nav>
+      <nav className="absolute top-0 left-0 w-full z-50 backdrop-blur-md">
+  <div className="container mx-auto px-4 h-16 flex items-center justify-between">
+    <h1 className="flex items-center gap-2 mb-1 text-xl font-bold text-black">
+      <img 
+        src="/AyurSutra Logo - Mandala Concept.png" 
+        alt="AyurSutra Logo" 
+        className="h-8 w-8 mt-1 object-contain bg-black"
+      />
+      AyurSutra
+    </h1>
+
+    <div className="flex items-center gap-4">
+      {/* <ThemeToggle /> */}
+      <Button variant="hero" className="text-white" onClick={() => navigate("/login")}>
+        Login
+      </Button>
+      <Button variant="hero" onClick={() => navigate("/register")}>
+        Get Started
+      </Button>
+    </div>
+  </div>
+</nav>
+
+
 
       {/* Hero Section */}
-      <section className="relative py-20 lg:py-32 overflow-hidden">
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{ backgroundImage: `url(${heroImage})` }}
         >
-          <div className="absolute inset-0 bg-gradient-hero opacity-90" />
+        <div className="absolute inset-0 backdrop-blur-sm" />
         </div>
         
-        <div className="relative container mx-auto px-4 text-center text-white">
+        <div className="relative container mx-auto px-4 mt-9 text-center text-white">
           <h1 className="text-4xl lg:text-6xl font-bold mb-6 leading-tight">
             Transform Your Wellness with
             <span className="block bg-gradient-to-r from-accent to-yellow-300 bg-clip-text text-transparent">
@@ -59,14 +67,15 @@ const Index = () => {
               Start Your Journey
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
-            <Button 
-              size="lg" 
-              variant="outline"
-              onClick={() => navigate("/dashboard")}
-              className="text-lg px-8 border-white/20 text-white hover:bg-white/10"
-            >
-              Explore Demo
-            </Button>
+            <Button
+  size="lg"
+  variant="outline"
+  onClick={() => navigate("/dashboard")}
+  className="text-lg px-8 border border-blue-900 text-blue-300 bg-blue-950 hover:bg-sky-500 hover:text-white transition-all duration-300"
+>
+  Explore Demo
+</Button>
+
           </div>
         </div>
       </section>
@@ -160,35 +169,44 @@ const Index = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 lg:py-24 bg-gradient-hero text-white">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl lg:text-4xl font-bold mb-6">
-            Ready to Begin Your Wellness Journey?
-          </h2>
-          <p className="text-xl opacity-90 mb-8 max-w-2xl mx-auto">
-            Join thousands of individuals who have discovered the transformative power of personalized Ayurvedic care.
-          </p>
-          
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button 
-              size="lg" 
-              variant="secondary"
-              onClick={() => navigate("/register")}
-              className="text-lg px-8"
-            >
-              Create Free Account
-            </Button>
-            <Button 
-              size="lg" 
-              variant="outline"
-              onClick={() => navigate("/dashboard")}
-              className="text-lg px-8 border-white/20 text-white hover:bg-white/10"
-            >
-              Try Demo Mode
-            </Button>
-          </div>
-        </div>
-      </section>
+      <section className="relative py-16 lg:py-24 text-white overflow-hidden">
+  {/* Background same as Hero */}
+  <div 
+    className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+    style={{ backgroundImage: `url(${heroImage})` }}
+  >
+    <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" />
+  </div>
+
+  {/* Content */}
+  <div className="relative container mx-auto px-4 text-center">
+    <h2 className="text-3xl lg:text-4xl font-bold mb-6">
+      Ready to Begin Your Wellness Journey?
+    </h2>
+    <p className="text-xl opacity-90 mb-8 max-w-2xl mx-auto">
+      Join thousands of individuals who have discovered the transformative power of personalized Ayurvedic care.
+    </p>
+    
+    <div className="flex flex-col sm:flex-row gap-4 justify-center">
+      <Button 
+        size="lg" 
+        variant="secondary"
+        onClick={() => navigate("/register")}
+        className="text-lg px-8"
+      >
+        Create Free Account
+      </Button>
+      <Button 
+        size="lg" 
+        variant="outline"
+        onClick={() => navigate("/dashboard")}
+        className="text-lg px-8 border-white/20 text-white hover:bg-white/10"
+      >
+        Try Demo Mode
+      </Button>
+    </div>
+  </div>
+</section>
 
       {/* Footer */}
       <footer className="py-8 border-t bg-card/50">

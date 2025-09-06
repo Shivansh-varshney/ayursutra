@@ -15,7 +15,7 @@ export function Register() {
           className="w-full bg-cover bg-center bg-no-repeat"
           style={{ backgroundImage: `url(${heroImage})` }}
         >
-          <div className="absolute inset-0 bg-gradient-hero opacity-80" />
+          <div className="absolute inset-0 opacity-100 backdrop-blur-sm" />
           <div className="absolute inset-0 flex items-center justify-center p-8">
             <div className="text-center text-white space-y-6 max-w-lg">
               <h1 className="text-4xl font-bold">
@@ -53,7 +53,7 @@ export function Register() {
       </div>
 
       {/* Right side - Register Form */}
-      <div className="flex-1 flex items-center justify-center p-8 bg-background">
+      <div className="flex-1 flex items-start justify-center p-8 bg-background">
         <div className="w-full max-w-md space-y-6">
           <div className="flex justify-between items-center">
             <h2 className="text-2xl font-bold bg-gradient-primary bg-clip-text text-transparent">
@@ -63,13 +63,6 @@ export function Register() {
           </div>
 
           <RegisterForm />
-
-          <div className="text-center">
-            <span className="text-sm text-muted-foreground">Already have an account? </span>
-            <Button variant="link" className="p-0" onClick={() => navigate("/login")}>
-              Sign in here
-            </Button>
-          </div>
         </div>
       </div>
     </div>
