@@ -15,7 +15,7 @@ export function Login() {
           className="w-full bg-cover bg-center bg-no-repeat"
           style={{ backgroundImage: `url(${heroImage})` }}
         >
-          <div className="absolute inset-0 bg-gradient-hero opacity-80" />
+          <div className="absolute inset-0 bg-black/40 backdrop-blur-sm opacity-80" />
           <div className="absolute inset-0 flex items-center justify-center p-8">
             <div className="text-center text-white space-y-6 max-w-lg">
               <h1 className="text-4xl font-bold">
@@ -41,12 +41,6 @@ export function Login() {
 
           <LoginForm />
 
-          <div className="text-center">
-            <span className="text-sm text-muted-foreground">Don't have an account? </span>
-            <Button variant="link" className="p-0" onClick={() => navigate("/register")}>
-              Sign up here
-            </Button>
-          </div>
         </div>
       </div>
     </div>
