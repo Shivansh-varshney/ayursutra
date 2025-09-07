@@ -193,7 +193,7 @@ export function Patients() {
           </p>
         </div>
         
-        <Button className="bg-gradient-primary hover:opacity-90">
+        <Button className="bg-gradient-to-r from-sky-400 to-blue-600 text-white hover:opacity-90">
           <Plus className="h-4 w-4 mr-2" />
           Add New Patient
         </Button>

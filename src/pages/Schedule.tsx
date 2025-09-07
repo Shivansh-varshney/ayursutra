@@ -64,15 +64,15 @@ export function Schedule() {
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case "confirmed": return "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200"
-      case "pending": return "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200"
-      case "cancelled": return "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200"
-      default: return "bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-200"
+      case "confirmed": return "bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-200"
+      case "pending": return "bg-yellow-100 text-yellow-700 dark:bg-yellow-900 dark:text-yellow-200"
+      case "cancelled": return "bg-red-100 text-red-700 dark:bg-red-900 dark:text-red-200"
+      default: return "bg-gray-100 text-gray-700 dark:bg-gray-900 dark:text-gray-200"
     }
   }
 
   return (
-    <div className="p-6 max-w-7xl mx-auto space-y-6">
+    <div className="p-6 lg:p-10 space-y-6">
       {/* Header */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
@@ -87,14 +87,14 @@ export function Schedule() {
           </p>
         </div>
         
-        <Button className="bg-gradient-primary hover:opacity-90">
+        <Button className="rounded-xl bg-gradient-to-r from-sky-400 to-blue-600 text-white hover:opacity-90">
           <Plus className="h-4 w-4 mr-2" />
           {currentRole === "patient" ? "Book Session" : "Add Session"}
         </Button>
       </div>
 
       {/* Filters & Search */}
-      <Card>
+      <Card className="rounded-2xl shadow-md border bg-white dark:bg-gray-900">
         <CardContent className="p-4">
           <div className="flex flex-col sm:flex-row gap-4">
             <div className="flex-1">
@@ -104,14 +104,14 @@ export function Schedule() {
                   placeholder="Search sessions, practitioners, or treatments..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="pl-10"
+                  className="pl-10 rounded-xl"
                 />
               </div>
             </div>
             
             <div className="flex gap-2">
               <Select value={filter} onValueChange={setFilter}>
-                <SelectTrigger className="w-32">
+                <SelectTrigger className="w-32 rounded-xl">
                   <Filter className="h-4 w-4 mr-2" />
                   <SelectValue />
                 </SelectTrigger>
@@ -124,7 +124,7 @@ export function Schedule() {
               </Select>
 
               <Tabs value={view} onValueChange={(v) => setView(v as "calendar" | "list")}>
-                <TabsList>
+                <TabsList className="rounded-xl">
                   <TabsTrigger value="list">List</TabsTrigger>
                   <TabsTrigger value="calendar">Calendar</TabsTrigger>
                 </TabsList>
@@ -139,7 +139,7 @@ export function Schedule() {
         {/* List View */}
         <TabsContent value="list" className="space-y-4">
           {filteredSessions.length === 0 ? (
-            <Card>
+            <Card className="rounded-2xl shadow-md border bg-white dark:bg-gray-900">
               <CardContent className="p-8 text-center">
                 <Calendar className="h-12 w-12 mx-auto text-muted-foreground mb-4" />
                 <h3 className="text-lg font-semibold mb-2">No sessions found</h3>
@@ -153,7 +153,7 @@ export function Schedule() {
             </Card>
           ) : (
             filteredSessions.map((session) => (
-              <Card key={session.id} className="hover:shadow-lg transition-shadow duration-200">
+              <Card key={session.id} className="rounded-2xl shadow-md border bg-white dark:bg-gray-900 hover:shadow-lg transition-shadow duration-200">
                 <CardContent className="p-6">
                   <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
                     <div className="flex-1">
@@ -177,7 +177,7 @@ export function Schedule() {
                             </div>
                           </div>
                         </div>
-                        <Badge className={getStatusColor(session.status)}>
+                        <Badge className={`${getStatusColor(session.status)} rounded-xl`}>
                           {session.status}
                         </Badge>
                       </div>
@@ -204,28 +204,28 @@ export function Schedule() {
                       </div>
 
                       {session.notes && (
-                        <p className="text-sm text-muted-foreground bg-muted/30 p-3 rounded-md">
+                        <p className="text-sm text-muted-foreground bg-muted/30 p-3 rounded-lg">
                           {session.notes}
                         </p>
                       )}
                     </div>
 
                     <div className="flex flex-col sm:flex-row gap-2">
-                      <Button variant="outline" size="sm">
+                      <Button variant="outline" size="sm" className="rounded-xl">
                         View Details
                       </Button>
                       {session.status === "confirmed" && (
                         <>
-                          <Button variant="outline" size="sm">
+                          <Button variant="outline" size="sm" className="rounded-xl">
                             Reschedule
                           </Button>
-                          <Button variant="destructive" size="sm">
+                          <Button variant="destructive" size="sm" className="rounded-xl">
                             Cancel
                           </Button>
                         </>
                       )}
                       {session.status === "pending" && currentRole === "practitioner" && (
-                        <Button size="sm" className="bg-gradient-primary">
+                        <Button size="sm" className="rounded-xl bg-gradient-to-r from-sky-400 to-blue-600 text-white">
                           Approve
                         </Button>
                       )}
@@ -239,13 +239,13 @@ export function Schedule() {
 
         {/* Calendar View */}
         <TabsContent value="calendar">
-          <Card>
+          <Card className="rounded-2xl shadow-md border bg-white dark:bg-gray-900">
             <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Calendar className="h-5 w-5" />
+              <CardTitle className="flex items-center gap-2 text-foreground">
+                <Calendar className="h-5 w-5 text-primary" />
                 Calendar View
               </CardTitle>
-              <CardDescription>
+              <CardDescription className="text-muted-foreground">
                 Visual calendar representation of your sessions
               </CardDescription>
             </CardHeader>
@@ -262,43 +262,37 @@ export function Schedule() {
 
       {/* Quick Stats */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <Card>
-          <CardContent className="p-4">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm text-muted-foreground">This Week</p>
-                <p className="text-2xl font-bold">
-                  {filteredSessions.filter(s => s.status === "confirmed").length}
-                </p>
-              </div>
-              <Calendar className="h-8 w-8 text-primary" />
+        <Card className="rounded-2xl shadow-md border bg-white dark:bg-gray-900">
+          <CardContent className="p-4 flex items-center justify-between">
+            <div>
+              <p className="text-sm text-muted-foreground">This Week</p>
+              <p className="text-2xl font-bold text-foreground">
+                {filteredSessions.filter(s => s.status === "confirmed").length}
+              </p>
             </div>
+            <Calendar className="h-8 w-8 text-primary" />
           </CardContent>
         </Card>
 
-        <Card>
-          <CardContent className="p-4">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm text-muted-foreground">Pending</p>
-                <p className="text-2xl font-bold">
-                  {filteredSessions.filter(s => s.status === "pending").length}
-                </p>
-              </div>
-              <Clock className="h-8 w-8 text-accent" />
+        <Card className="rounded-2xl shadow-md border bg-white dark:bg-gray-900">
+          <CardContent className="p-4 flex items-center justify-between">
+            <div>
+              <p className="text-sm text-muted-foreground">Pending</p>
+              <p className="text-2xl font-bold text-foreground">
+                {filteredSessions.filter(s => s.status === "pending").length}
+              </p>
             </div>
+            <Clock className="h-8 w-8 text-accent" />
           </CardContent>
         </Card>
 
-        <Card>
-          <CardContent className="p-4">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm text-muted-foreground">Total Hours</p>
-                <p className="text-2xl font-bold">12.5</p>
-              </div>
-              <User className="h-8 w-8 text-secondary-foreground" />
+        <Card className="rounded-2xl shadow-md border bg-white dark:bg-gray-900">
+          <CardContent className="p-4 flex items-center justify-between">
+            <div>
+              <p className="text-sm text-muted-foreground">Total Hours</p>
+              <p className="text-2xl font-bold text-foreground">12.5</p>
             </div>
+            <User className="h-8 w-8 text-secondary-foreground" />
           </CardContent>
         </Card>
       </div>
