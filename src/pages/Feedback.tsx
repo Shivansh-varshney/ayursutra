@@ -202,8 +202,9 @@ export function Feedback() {
           />
         </div>
 
+        {/* Bluish submit button */}
         <Button 
-          className="w-full bg-gradient-primary hover:opacity-90" 
+          className="w-full bg-blue-600 text-white hover:bg-blue-500 transition-colors" 
           onClick={submitFeedback}
           disabled={!newFeedback.sessionType || !newFeedback.rating || !newFeedback.comment}
         >
@@ -293,10 +294,18 @@ export function Feedback() {
 
               {currentRole === "practitioner" && (
                 <div className="mt-4 pt-4 border-t flex gap-2">
-                  <Button variant="outline" size="sm">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="border-blue-700 text-blue-600 hover:bg-blue-600 hover:text-white dark:border-blue-500 dark:text-blue-400 dark:hover:bg-blue-500 dark:hover:text-white transition-colors"
+                  >
                     Respond
                   </Button>
-                  <Button variant="ghost" size="sm">
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="text-blue-600 hover:text-blue-400 dark:text-blue-400 dark:hover:text-blue-300"
+                  >
                     View Session Details
                   </Button>
                 </div>
@@ -325,7 +334,8 @@ export function Feedback() {
           </p>
         </div>
         
-        <Button className="bg-gradient-primary hover:opacity-90">
+        {/* Top analytics button */}
+        <Button className="bg-blue-600 text-white hover:bg-blue-500 transition-colors">
           <BarChart3 className="h-4 w-4 mr-2" />
           View Analytics
         </Button>
@@ -460,6 +470,7 @@ export function Feedback() {
                 </CardDescription>
               </CardHeader>
               <CardContent>
+
                 <div className="space-y-4">
                   {["effectiveness", "comfort", "professionalism", "environment"].map((category) => {
                     const avg = feedbackData.reduce((acc, f) => 

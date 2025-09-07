@@ -86,7 +86,7 @@ export function Tracking() {
           </p>
         </div>
         
-        <Button className="bg-gradient-primary hover:opacity-90">
+        <Button className="bg-gradient-to-r from-sky-400 to-blue-600 text-white hover:opacity-90">
           <BarChart3 className="h-4 w-4 mr-2" />
           Generate Report
         </Button>
@@ -173,7 +173,7 @@ export function Tracking() {
                       View Details
                     </Button>
                     {phase.status === "active" && currentRole === "practitioner" && (
-                      <Button size="sm" className="bg-gradient-primary">
+                      <Button size="sm" className="bg-gradient-to-r from-sky-400 to-blue-600 text-white">
                         Update Progress
                       </Button>
                     )}

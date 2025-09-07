@@ -105,7 +105,7 @@ export function Sidebar() {
   to={item.to}
   className={({ isActive }) =>
     cn(
-      "flex items-center gap-3 py-3 rounded-lg transition-all duration-200 group",
+      "flex items-center gap-3 py-2.5 rounded-lg transition-all duration-200 group",
       collapsed ? "w-10 justify-center" : "w-full px-3 justify-start",
       isActive
         ? "bg-primary text-primary-foreground shadow-lg"

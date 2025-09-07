@@ -33,7 +33,7 @@ export function Login() {
       <div className="flex-1 flex items-center justify-center p-8 bg-background">
         <div className="w-full max-w-md space-y-6">
           <div className="flex justify-between items-center">
-            <h2 className="text-2xl font-bold bg-gradient-primary bg-clip-text text-transparent">
+            <h2 className="text-2xl font-bold bg-gradient-to-r from-sky-400 to-blue-600 text-white bg-clip-text text-transparent">
               AyurSutra
             </h2>
             <ThemeToggle />
